@@ -1,0 +1,6 @@
+/target
+/migration/target
+.env
+*-local.toml
+Cargo.lock
+.idea
