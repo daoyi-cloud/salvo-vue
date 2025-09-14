@@ -4,3 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+salvo.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+validator.workspace = true
+sea-orm.workspace = true
+rand.workspace = true
+argon2.workspace = true
+tracing.workspace = true
