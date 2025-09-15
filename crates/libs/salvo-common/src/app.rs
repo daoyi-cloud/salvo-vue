@@ -4,7 +4,6 @@ use salvo::prelude::*;
 use salvo::server::ServerHandle;
 use serde::Serialize;
 use tokio::signal;
-use tracing::info;
 
 use crate::hoops;
 pub use salvo_common_support::error::AppError;
@@ -25,10 +24,10 @@ pub fn empty_ok() -> JsonResult<Empty> {
 pub async fn run(routers: Router) {
     crate::config::init();
     let config = crate::config::get();
-    crate::db::init(&config.db).await;
-
     let _guard = config.log.guard();
     tracing::info!("log level: {}", &config.log.filter_level);
+    crate::db::init(&config.db).await;
+    tracing::info!("config init success ... : {config:#?}");
 
     let service = Service::new(routers)
         .catcher(Catcher::default().hoop(hoops::error_404))
@@ -85,8 +84,8 @@ async fn shutdown_signal(handle: ServerHandle) {
     let terminate = std::future::pending::<()>();
 
     tokio::select! {
-        _ = ctrl_c => info!("ctrl_c signal received"),
-        _ = terminate => info!("terminate signal received"),
+        _ = ctrl_c => tracing::info!("ctrl_c signal received"),
+        _ = terminate => tracing::info!("terminate signal received"),
     }
     handle.stop_graceful(std::time::Duration::from_secs(60));
 }
