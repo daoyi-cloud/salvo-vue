@@ -28,7 +28,9 @@ tracing-subscriber.workspace = true
 sea-orm.workspace = true
 askama.workspace = true
 rand.workspace = true
+salvo-common-support.workspace = true
 salvo-common.workspace = true
+salvo-entity-demo.workspace = true
 [workspace.dependencies]
 anyhow = "1.0.99"
 figment = { version = "0.10.19", features = ["env", "toml", "yaml"] }
@@ -55,3 +57,4 @@ salvo-common-support = { path = "./crates/libs/salvo-common-support" }
 salvo-common = { path = "./crates/libs/salvo-common" }
 salvo-entity-system = { path = "./crates/entities/salvo-entity-system" }
 salvo-entity-infra = { path = "./crates/entities/salvo-entity-infra" }
+salvo-entity-demo = { path = "./crates/entities/salvo-entity-demo" }

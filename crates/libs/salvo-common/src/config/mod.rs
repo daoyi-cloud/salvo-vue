@@ -20,7 +20,6 @@ pub fn init() {
             Env::var("APP_CONFIG").as_deref().unwrap_or("resources/config-local.toml"),
         ))
         .merge(Env::prefixed("APP_").global());
-
     let mut config = match raw_config.extract::<ServerConfig>() {
         Ok(s) => s,
         Err(e) => {

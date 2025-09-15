@@ -1,14 +1,18 @@
-use cookie::Cookie;
 use askama::Template;
+use cookie::Cookie;
 use salvo::oapi::extract::*;
 use salvo::prelude::*;
 use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 use serde::{Deserialize, Serialize};
 
-use crate::entities::users::Model;
-use crate::entities::{prelude::Users, users};
-use crate::hoops::jwt;
-use crate::{db, json_ok, utils, AppResult, JsonResult};
+use salvo_common::hoops::jwt;
+use salvo_common::{
+    app::{AppResult, JsonResult, json_ok},
+    db,
+};
+use salvo_common_support::utils;
+use salvo_entity_demo::entities::users::Model;
+use salvo_entity_demo::entities::{prelude::Users, users};
 
 #[handler]
 pub async fn login_page(res: &mut Response) -> AppResult<()> {
@@ -60,8 +64,7 @@ pub async fn post_login(
             .into());
     };
 
-    if utils::verify_password(&idata.password, &password).is_err()
-    {
+    if utils::verify_password(&idata.password, &password).is_err() {
         return Err(StatusError::unauthorized()
             .brief("Addount not exist or password is incorrect.")
             .into());
