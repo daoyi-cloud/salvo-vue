@@ -2,24 +2,10 @@ use salvo::catcher::Catcher;
 use salvo::conn::rustls::{Keycert, RustlsConfig};
 use salvo::prelude::*;
 use salvo::server::ServerHandle;
-use serde::Serialize;
 use tokio::signal;
 
 use crate::hoops;
-pub use salvo_common_support::error::AppError;
 
-pub type AppResult<T> = Result<T, AppError>;
-pub type JsonResult<T> = Result<Json<T>, AppError>;
-pub type EmptyResult = Result<Json<Empty>, AppError>;
-
-pub fn json_ok<T>(data: T) -> JsonResult<T> {
-    Ok(Json(data))
-}
-#[derive(Serialize, ToSchema, Clone, Copy, Debug)]
-pub struct Empty {}
-pub fn empty_ok() -> JsonResult<Empty> {
-    Ok(Json(Empty {}))
-}
 
 pub async fn run(routers: Router) {
     crate::config::init();

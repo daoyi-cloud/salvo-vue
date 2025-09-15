@@ -9,12 +9,10 @@ use serde::{Deserialize, Serialize};
 use ulid::Ulid;
 use validator::Validate;
 
+use salvo_common::db;
 use salvo_common::models::SafeUser;
-use salvo_common::{
-    app::{AppResult, EmptyResult, JsonResult, empty_ok, json_ok},
-    db,
-};
 use salvo_common_support::utils;
+use salvo_common_support::web::resp::{AppResult, EmptyResult, JsonResult, empty_ok, json_ok};
 use salvo_entity_demo::entities::{prelude::Users, users};
 
 #[derive(Template)]

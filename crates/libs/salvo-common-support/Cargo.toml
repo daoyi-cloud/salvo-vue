@@ -12,3 +12,4 @@ sea-orm.workspace = true
 rand.workspace = true
 argon2.workspace = true
 tracing.workspace = true
+serde.workspace = true

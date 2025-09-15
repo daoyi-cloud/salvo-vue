@@ -5,12 +5,10 @@ use salvo::prelude::*;
 use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 use serde::{Deserialize, Serialize};
 
+use salvo_common::db;
 use salvo_common::hoops::jwt;
-use salvo_common::{
-    app::{AppResult, JsonResult, json_ok},
-    db,
-};
 use salvo_common_support::utils;
+use salvo_common_support::web::resp::{AppResult, JsonResult, json_ok};
 use salvo_entity_demo::entities::users::Model;
 use salvo_entity_demo::entities::{prelude::Users, users};
 

@@ -1,7 +1,6 @@
 use askama::Template;
 use salvo::prelude::*;
-
-use salvo_common::app::AppResult;
+use salvo_common_support::web::resp::AppResult;
 
 #[handler]
 pub async fn hello(req: &mut Request) -> AppResult<Text<String>> {
